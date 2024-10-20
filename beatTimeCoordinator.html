@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="#7600ff">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="https://beatchan.neocities.org">
+  <title>.ビートちゃん @000 .Ｂ E A Tートちゃん</title>
+  
+  <!-- All hail our glorious .beatChan -->
+  <!-- beatChan character design credit to HammerKoopa, King of the Walrus Island https://walrus-island.neocities.org/ -->
+  
+  <style>
+	:root {
+	  --primary-color: #7600ff;
+	  --primary-hover: #4c00b3;
+	  --active-timezone-color: #68B17B;
+	}
+	body {
+	  font-family: Arial, sans-serif;
+	  background-color: #f0f0f0;
+	  background: url('beatchantransparent2.png') no-repeat right fixed;
+	  color: #333;
+	  margin: 0;
+	  padding: 0;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	}
+
+	header {
+	  background-color: rgba(118, 0, 255, 0.850);
+	  color: white;
+	  padding: 20px;
+	  width: 100%;
+	  text-align: center;
+	}
+
+	section {
+	  margin: 20px;
+	  text-align: center;
+	}
+
+	#timezone-buttons .row {
+	  margin-bottom: 10px;
+	}
+
+	button, select {
+	  padding: 10px;
+	  margin: 5px;
+	  cursor: pointer;
+	  background-color: var(--primary-color);
+	  color: white;
+	  border: none;
+	  border-radius: 5px;
+	}
+
+	button:hover {
+	  background-color: var(--primary-hover);
+	}
+
+	button.active {
+	  background-color: var(--active-timezone-color);
+	}
+
+	/* Scrollable table container */
+	.table-container {
+	  width: 100%;
+	  max-width: 100%;
+	  overflow-x: auto;
+	  overflow-y: hidden;
+	}
+
+	table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  margin-top: 20px;
+	}
+
+	th, td {
+	  border: 1px solid #ccc;
+	  padding: 10px;
+	  text-align: center;
+	  min-width: 60px;
+	}
+
+	th {
+	  background-color: #f4f4f4;
+	}
+
+	#beat-time-row th {
+	  background-color: #f0f8ff;
+	}
+
+	.daytime {
+	  background-color:#ffeeba;
+	}
+
+	.nighttime {
+	  background-color: #2c3e50;
+	  color: white;
+	}
+
+	.current-time {
+	  border: 2px solid red;
+	}
+	.beat-container {
+	  width: 100%;
+	  max-width:42em;
+	  margin:12 auto;
+	}
+	.beat-h1 {
+	  font-size: 2em;
+	  color: #A9A9A9;
+	  letter-spacing: .05em;
+	}
+	.beat-symbol {
+	  color: rgb(255, 223, 0);
+	  opacity: .9;
+	}
+
+	@media (max-width: 768px) {
+	  th, td {
+		padding: 5px;
+		font-size: 12px;
+		min-width: 50px;
+	  }
+	}
+
+	@media (max-width: 480px) {
+	  th, td {
+		padding: 3px;
+		font-size: 10px;
+		min-width: 40px;
+	  }
+	}
+	
+  </style>
+</head>
+<body>
+
+  <header>
+	<h1>beatChan's Beat Time Coordinator</h1>
+	<p id="current-time">Current Trad Time: --:-- (24hr) / --:-- (12hr)</p>
+	Current Beat Time: <b class="beat-symbol">@</b><span class="beat">&nbsp;</span><span class="beat-symbol">.beats</span>
+  </header>
+
+  <section id="timezone-selection">
+	<h2>Select Timezones</h2>
+	<div id="timezone-buttons">
+	  <div class="row">
+		<button data-utc-offset="+14">UTC +14</button>
+		<button data-utc-offset="+13">UTC +13</button>
+		<button data-utc-offset="+12">UTC +12</button>
+		<button data-utc-offset="+11">UTC +11</button>
+		<button data-utc-offset="+10">UTC +10</button>
+		<button data-utc-offset="+9">UTC +9</button>
+		<button data-utc-offset="+8">UTC +8</button>
+	  </div>
+	  <div class="row">
+		<button data-utc-offset="+7">UTC +7</button>
+		<button data-utc-offset="+6">UTC +6</button>
+		<button data-utc-offset="+5">UTC +5</button>
+		<button data-utc-offset="+4">UTC +4</button>
+		<button data-utc-offset="+3">UTC +3</button>
+		<button data-utc-offset="+2">UTC +2</button>
+		<button data-utc-offset="+1">UTC +1</button>
+	  </div>
+	  <div class="row">
+		<button data-utc-offset="0">UTC 0</button>
+	  </div>
+	  <div class="row">
+		<button data-utc-offset="-1">UTC -1</button>
+		<button data-utc-offset="-2">UTC -2</button>
+		<button data-utc-offset="-3">UTC -3</button>
+		<button data-utc-offset="-4">UTC -4</button>
+		<button data-utc-offset="-5">UTC -5</button>
+		<button data-utc-offset="-6">UTC -6</button>
+	  </div>
+	  <div class="row">
+		<button data-utc-offset="-7">UTC -7</button>
+		<button data-utc-offset="-8">UTC -8</button>
+		<button data-utc-offset="-9">UTC -9</button>
+		<button data-utc-offset="-10">UTC -10</button>
+		<button data-utc-offset="-11">UTC -11</button>
+		<button data-utc-offset="-12">UTC -12</button>
+	  </div>
+	</div>
+
+	<div>
+	  <b><label for="user-timezone-select">Your Timezone:</label></b>
+	  <select id="user-timezone-select">
+		<!-- Options will be dynamically populated-->
+	  </select>
+	</div>
+	<br>
+	<button id="toggle-time-format">Toggle 24hr/12hr Time Format</button>
+  </section>
+
+  <section id="time-table" class="table-container">
+	<table id="timezone-table">
+	  <thead>
+		<tr id="beat-time-row">
+		  <th>Beat Time</th>
+		  <!-- Represent beat time by each hour from @000 to @958 -->
+		  <th>@041</th><th>@083</th><th>@125</th><th>@166</th>
+		  <th>@208</th><th>@250</th><th>@291</th><th>@333</th><th>@375</th>
+		  <th>@416</th><th>@458</th><th>@500</th><th>@541</th><th>@583</th>
+		  <th>@625</th><th>@666</th><th>@708</th><th>@750</th><th>@791</th>
+		  <th>@833</th><th>@875</th><th>@916</th><th>@958</th><th>@000</th>
+		</tr>
+	  </thead>
+	  <tbody id="timezone-rows">
+		<!-- Dynamically added rows for selected timezones -->
+	  </tbody>
+	</table>
+  </section>
+
+  <script>
+	document.addEventListener('DOMContentLoaded', function () {
+	  const timezoneButtons = document.querySelectorAll('button[data-utc-offset]');
+	  const timezoneTable = document.getElementById('timezone-rows');
+	  const currentTimeDisplay = document.getElementById('current-time');
+	  const userTimezoneSelect = document.getElementById('user-timezone-select');
+	  const toggleTimeFormatButton = document.getElementById('toggle-time-format');
+	  let is24HourFormat = true;
+
+	  const availableOffsets = Array.from({ length: 27 }, (_, i) => i - 12); // [-12, -11, ..., +14]
+	  let activeTimezones = new Set();
+
+	  function detectUserTimezone() {
+		const userOffsetMinutes = new Date().getTimezoneOffset();
+		const userOffset = -userOffsetMinutes / 60; // Convert minutes to hours
+		populateUserTimezoneSelect(userOffset);
+		addOrUpdateUserTimezone(userOffset);
+	  }
+
+	  function populateUserTimezoneSelect(defaultOffset) {
+		availableOffsets.forEach(offset => {
+		  const option = document.createElement('option');
+		  option.value = offset;
+		  option.text = `UTC ${offset >= 0 ? '+' : ''}${offset}`;
+		  if (offset === defaultOffset) {
+			option.selected = true;
+		  }
+		  userTimezoneSelect.appendChild(option);
+		});
+	  }
+
+	  function createTimezoneRow(offset, label) {
+		const row = document.createElement('tr');
+		row.setAttribute('data-utc-offset', offset);
+		row.classList.add('timezone-row');
+		const timezoneCell = document.createElement('td');
+		timezoneCell.textContent = label;
+		row.appendChild(timezoneCell);
+
+		for (let hour = 0; hour < 24; hour++) {
+		  const cell = createHourCell(hour, offset);
+		  row.appendChild(cell);
+		}
+
+		return row;
+	  }
+	  //Determine day/night to highlight cells
+	  function createHourCell(hour, offset) {
+		const cell = document.createElement('td');
+		const localHour = (hour + parseInt(offset) + 24) % 24;
+		cell.textContent = formatHour(localHour);
+		cell.classList.add(localHour >= 6 && localHour < 18 ? 'daytime' : 'nighttime');
+		return cell;
+	  }
+
+	  function formatHour(hour) {
+		if (is24HourFormat) {
+		  return hour.toString().padStart(2, '0') + ':00';
+		} else {
+		  const period = hour >= 12 ? 'PM' : 'AM';
+		  const hour12 = hour % 12 === 0 ? 12 : hour % 12;
+		  return `${hour12.toString().padStart(2, '0')}:00 ${period}`;
+		}
+	  }
+
+	  function addOrUpdateUserTimezone(offset) {
+		let existingRow = document.querySelector('tr[data-utc-offset="user"]');
+		if (!existingRow) {
+		  existingRow = createTimezoneRow(offset, `Your Timezone (UTC ${offset >= 0 ? '+' : ''}${offset})`);
+		  existingRow.setAttribute('data-utc-offset', 'user');
+		  timezoneTable.appendChild(existingRow);
+		} else {
+		  existingRow.querySelector('td').textContent = `Your Timezone (UTC ${offset >= 0 ? '+' : ''}${offset})`;
+		  for (let hour = 0; hour < 24; hour++) {
+			const cell = existingRow.children[hour + 1];
+			const localHour = (hour + parseInt(offset) + 24) % 24;
+			cell.textContent = formatHour(localHour);
+			cell.className = '';
+			cell.classList.add(localHour >= 6 && localHour < 18 ? 'daytime' : 'nighttime');
+		  }
+		}
+	  }
+
+	  function addTimezoneRow(offset) {
+		const row = createTimezoneRow(offset, `UTC ${offset >= 0 ? '+' : ''}${offset}`);
+		timezoneTable.appendChild(row);
+	  }
+
+	  function removeTimezoneRow(offset) {
+		const row = document.querySelector(`tr[data-utc-offset="${offset}"]`);
+		if (row) row.remove();
+	  }
+
+	  function updateCurrentTimeDisplay() {
+		const now = new Date();
+		const hours24 = now.getHours().toString().padStart(2, '0');
+		const minutes = now.getMinutes().toString().padStart(2, '0');
+		const period = now.getHours() >= 12 ? 'PM' : 'AM';
+		const hours12 = now.getHours() % 12 === 0 ? 12 : now.getHours() % 12;
+		currentTimeDisplay.textContent = `Current Trad Time: ${hours24}:${minutes} (24hr) / ${hours12}:${minutes} ${period} (12hr)`;
+	  }
+	  //Toggle 12/24hr time displays
+	  toggleTimeFormatButton.addEventListener('click', () => {
+		is24HourFormat = !is24HourFormat;
+		document.querySelectorAll('tr.timezone-row').forEach(row => {
+		  const offsetAttr = row.getAttribute('data-utc-offset');
+		  let offset;
+		  if (offsetAttr === 'user') {
+			offset = parseInt(userTimezoneSelect.value);
+			addOrUpdateUserTimezone(offset);
+		  } else {
+			offset = parseInt(offsetAttr);
+			const label = `UTC ${offset >= 0 ? '+' : ''}${offset}`;
+			row.replaceWith(createTimezoneRow(offset, label));
+		  }
+		});
+	  });
+
+	  userTimezoneSelect.addEventListener('change', () => {
+		const selectedOffset = parseInt(userTimezoneSelect.value);
+		addOrUpdateUserTimezone(selectedOffset);
+	  });
+
+	  timezoneButtons.forEach(button => {
+		button.addEventListener('click', function () {
+		  const offset = parseInt(this.dataset.utcOffset);
+		  if (activeTimezones.has(offset)) {
+			removeTimezoneRow(offset);
+			activeTimezones.delete(offset);
+			button.classList.remove('active');
+		  } else {
+			addTimezoneRow(offset);
+			activeTimezones.add(offset);
+			button.classList.add('active');
+		  }
+		});
+	  });
+	  
+	  detectUserTimezone();
+	  updateCurrentTimeDisplay();
+
+	  setInterval(() => {
+		updateCurrentTimeDisplay();
+	  }, 60000); // Refresh every minute
+	});
+	
+	function beatTime() {
+		const now = new Date();
+		const utcOffset = 1; // UTC+1
+		const utc1 = new Date(now.getTime() + (utcOffset * 60 * 60 * 1000));
+		  const seconds = utc1.getUTCHours() * 3600 + utc1.getUTCMinutes() * 60 + utc1.getUTCSeconds();
+		  const beat = (seconds / 86.4).toFixed(2);
+		const beatFormatted = beat.padStart(6, '0');
+		document.querySelector('.beat').innerHTML = beatFormatted;
+		document.title = `.ビートちゃん @${beat} .Ｂ E A Tートちゃん`;
+	  }
+	  beatTime();
+	  setInterval(beatTime, 1000);
+  </script>
+</body>
+</html>
