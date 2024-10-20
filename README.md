@@ -39,7 +39,7 @@ You can use the **'Toggle 24hr/12hr Time Format'** button to switch between time
 
 ### Why do all of this?
 
-Perception. Our objective is to assist in altering our percpetions of the use of Beat Time and its usefulness in global time coordination.
+Perception. Our objective is to assist in altering our perceptions of the use of Beat Time and its usefulness in global time coordination.
 
 This short video can help explain.
 
